@@ -1,7 +1,7 @@
 # create an sns topic
 # terraform aws create sns topic
 resource "aws_sns_topic" "user_updates" {
-  name      = "dev-sns-topic"
+  name = "dev-sns-topic"
 }
 
 # create an sns topic subscription

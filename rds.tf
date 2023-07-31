@@ -15,7 +15,7 @@ resource "aws_db_subnet_group" "database_subnet_group" {
 data "aws_db_snapshot" "latest_db_snapshot" {
   db_snapshot_identifier = var.database_snapshot_identifier
   most_recent            = true
-  snapshot_type          = manual
+  snapshot_type          = "manual"
 }
 
 # create database instance restored from db snapshots

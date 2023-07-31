@@ -4,7 +4,7 @@ resource "aws_launch_template" "webserver_launch_template" {
   name          = var.launch_template_name
   image_id      = var.ec2_image_id
   instance_type = var.ec2_instance_type
-  key_name      = var.ec2_key_pair_nam
+  key_name      = var.ec2_key_pair_name
   description   = "launch template for asg"
 
   monitoring {
@@ -36,8 +36,8 @@ resource "aws_autoscaling_group" "auto_scaling_group" {
   }
 
   lifecycle {
-    ignore_changes      = [targret_group_arn]
-  }
+  ignore_changes = [target_group_arns]
+}
 }
 
 # attach auto scaling group to alb target group
@@ -50,7 +50,7 @@ resource "aws_autoscaling_attachment" "asg_alb_target_group_attachment" {
 # create an auto scaling group notification
 # terraform aws autoscaling notification
 resource "aws_autoscaling_notification" "webserver_asg_notifications" {
-  group_names = aws_autoscaling_group.auto_scaling_group.name
+  group_names = [aws_autoscaling_group.auto_scaling_group.name]
 
   notifications = [
     "autoscaling:EC2_INSTANCE_LAUNCH",
