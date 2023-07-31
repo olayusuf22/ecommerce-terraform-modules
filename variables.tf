@@ -62,7 +62,7 @@ variable "database_instance_class" {
 }
 
 variable "database_instance_identifier" {
-  default     = "database-rds"
+  default     = "dev-rds-db"
   description = "the database instance identifier"
   type        = string
 }
